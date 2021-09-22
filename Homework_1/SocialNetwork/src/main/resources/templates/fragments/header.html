@@ -1,6 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:fragment="header-css">
+    <div th:fragment="header">
+        <title th:text="${title}">Social Network</title>
         <!-- this is header-css -->
         <link rel="stylesheet" type="text/css"
               href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -10,16 +11,20 @@
     </div>
 </head>
 <body>
-<div th:fragment="header">
-    <!-- this is header -->
+<div th:fragment="navbar">
+    <!-- this is header navbar-->
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">Spring Boot</a>
+                <a class="navbar-brand" th:href="@{/about}">about</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a th:href="@{/}">Home</a></li>
+                    <li class=""><a th:href="@{/logout}">logout</a></li>
+                    <li class=""><a th:href="@{/user/profile}">Profile</a></li>
+                    <li class=""><a th:href="@{/user/friends}">friends</a></li>
+                    <li class=""><a th:href="@{/user/users}">users</a></li>
                 </ul>
             </div>
         </div>

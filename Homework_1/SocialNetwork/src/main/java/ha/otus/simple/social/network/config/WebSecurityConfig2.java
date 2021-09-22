@@ -11,7 +11,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Configuration
@@ -33,37 +34,50 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // // http.authorizeRequests () Каждое сопоставление рассматривается в том порядке, в котором они объявлены.
-        http
-                .authorizeRequests()
-                // Ресурсы доступны всем пользователям
+
+        // The pages does not require login
+        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
+        // Ресурсы доступны всем пользователям
                 .antMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "**/favicon.ico").permitAll()
                 .antMatchers("/register").permitAll()
-                // Ресурсы, к которым может получить доступ только ROLE_USER
-                .antMatchers("/user/**").hasRole("USER")
                 // Любой URL, который не был найден, должен только аутентифицировать пользователя для доступа
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
+        // Config for Login Form
+                .and().formLogin()
+                // Submit URL of login page.
+//                .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 // Указываем страницу входа и предоставляем всем пользователям доступ к странице входа
-                .loginPage("/login")
+                .loginPage("/login")//
                 // Устанавливаем страницу входа по умолчанию для перехода к успеху, ошибка возвращается в интерфейс входа
-                .defaultSuccessUrl("/index").failureUrl("/login?error").permitAll()
+                .defaultSuccessUrl("/home")
+                .failureUrl("/login?error=true")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                // Config for Logout Page
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and()
                 // Включение cookie для сохранения пользовательских данных
                 .rememberMe()
                 // Устанавливаем срок действия cookie
                 .tokenValiditySeconds(60 * 60 * 24 * 7)
                 // Устанавливаем закрытый ключ cookie
-                .key("security")
-                .and()
-                .logout()
-                .permitAll();
-        // Вход в перехватчик
-//        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+                .key("security");;
+
+
                 // springsecurity4 автоматически включает csrf (подделку межсайтовых запросов) конфликтует с restful
         // включаем защиту от CSRF атак
         http.csrf().disable();
+
+        // When the user has logged in as XX.
+        // But access a page that requires role YY,
+        // AccessDeniedException will be thrown.
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+
     }
 
+    // Указываем Spring контейнеру, что надо инициализировать BCryptPasswordEncoder
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

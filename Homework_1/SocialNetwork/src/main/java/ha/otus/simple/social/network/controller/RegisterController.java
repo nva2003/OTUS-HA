@@ -3,6 +3,7 @@ package ha.otus.simple.social.network.controller;
 import ha.otus.simple.social.network.mapper.UserMapper;
 import ha.otus.simple.social.network.model.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,8 @@ public class RegisterController {
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/register")
     public String register(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -41,6 +44,8 @@ public class RegisterController {
             model.addAttribute("user", userDTO);
             return "register";
         }
+
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userMapper.createUser(userDTO);
         return "about";
     }
