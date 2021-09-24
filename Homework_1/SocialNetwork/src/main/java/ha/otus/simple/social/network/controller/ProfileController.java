@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
+import static ha.otus.simple.social.network.utils.ServerUtils.getUserFromSession;
+
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -50,14 +52,11 @@ public class ProfileController {
         SysUser user = userMapper.findById(id);
         Set<SysUser> friends = friendsMapper.getAcceptedFriendshipUsers(id);
         Friendship friendship = new Friendship (id,sessionUser.getUserId());
-        Boolean isFriend = friendsMapper.checkFriendship(sessionUser, user);
+        Boolean isFriend = friendsMapper.checkFriendship(friendship);
         model.addAttribute("user", user);
         model.addAttribute("usersHaveFriendship", isFriend);
         model.addAttribute("friends", friends);
         return "profile";
     }
 
-    public static SysUser getUserFromSession(HttpServletRequest request){
-        return (SysUser) request.getSession().getAttribute("user");
-    }
 }

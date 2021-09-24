@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+
+<body th:with="sessionUser=${session.user}">
+
+<div th:replace="fragments/header :: navbar"/>
+<hr/>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+
+            <div class="friends-top">
+                <h3 th:text="#{users.header}">Users:</h3>
+                <table class="table users">
+                    <tr th:each="user : ${users}">
+                        <td class="list-group-item">
+                            <span th:text="#{firstName}">First name</span>:
+                            <span th:text="${user.firstName}">Tyron</span>
+                        </td>
+                        <td class="list-group-item">
+                            <span th:text="#{lastName}">First name</span>:
+                            <span th:text="${user.lastName}">Lanister</span>
+                        </td>
+
+                        <td class="list-group-item">
+                            <span th:if="${user.sex.equals('MALE')}" th:text="#{gender.male}">Male</span>
+                            <span th:if="${user.sex.equals('FEMALE')}" th:text="#{gender.female}">Female</span>
+                        </td>
+                        <td>
+                            <a th:href="@{'/user/friends/' + ${user.userId} + '/addToFriends'}" class="btn btn-success">Add to friends</a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/user/profile/' + ${user.userId}}">Profile</a>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

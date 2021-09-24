@@ -1,13 +1,13 @@
 package ha.otus.simple.social.network.constants;
 
 public enum Gender {
-    MALE(1),
-    FEMALE(2),
-    UNKNOWN(3);
+    MALE("Male"),
+    FEMALE("Female"),
+    UNKNOWN("It");
 
-    private final int gender;
+    private final String gender;
 
-    Gender(int sex) {
+    Gender(String sex) {
         gender = sex;
     }
 
@@ -25,7 +25,7 @@ public enum Gender {
         }
     }
 
-    public static int getGenderByName(String name) {
+    public static String getGenderByName(String name) {
         if (name == null)
             return UNKNOWN.gender;
 
@@ -37,5 +37,9 @@ public enum Gender {
             default:
                 return UNKNOWN.gender;
         }
+    }
+
+    public String getDisplayValue() {
+        return gender;
     }
 }

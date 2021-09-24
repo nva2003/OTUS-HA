@@ -38,6 +38,19 @@
         where user_id= #{id}
     </select>
 
+    <select id="findAll" parameterType="Long" resultMap="userMap">
+        select u.*
+        from users u
+    </select>
+
+    <select id="findOther" parameterType="Long" resultMap="userMap">
+        <![CDATA[
+        select u.*
+        from users u
+        where user_id <> #{id}
+        ]]>
+    </select>
+
 
 
 

@@ -24,7 +24,7 @@
                                         <a th:href="@{/user/friends}" class="btn btn-success">Friend <span class="glyphicon glyphicon-ok"></span></a>
                                     </td>
                                     <td th:unless="${usersHaveFriendship}">
-                                        <a th:href="@{'/user/friends/' + ${user.id} + '/addToFriends'}" class="btn btn-success">Add to friends</a>
+                                        <a th:href="@{'/user/friends/' + ${user.userId} + '/addToFriends'}" class="btn btn-success">Add to friends</a>
                                     </td>
                                 </tr>
                             </table>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+
+<body th:with="sessionUser=${session.user}">
+
+<div th:replace="fragments/header :: navbar"/>
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+
+
+
+
+
+
+            <div class="friends-top">
+                <h3 th:text="#{friends.your}">Your friends</h3>
+                <table class="table friends">
+                    <tr th:each="user : ${friendsOfUser}">
+
+                        <td class="list-group-item">
+                            <span th:text="#{firstName}">First name</span>:
+                            <a th:href="@{'/user/profile/' + ${user.userId}}">
+                            <span th:text="${user.firstName}">Tyron</span>
+                            </a>
+                        </td>
+                        <td class="list-group-item">
+                            <span th:text="#{lastName}">First name</span>:
+                            <span th:text="${user.lastName}">Lanister</span>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" th:href="@{'/user/friends/' + ${user.userId} + '/decline'}" th:text="#{friends.remove}">Remove</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

@@ -12,10 +12,15 @@ public interface UserMapper {
     public SysUser findByUserName(String username);
 
     public SysUser findById(Long id);
+    @Deprecated
+    public List<SysUser> findAll();
+
+    public List<SysUser> findOther(Long id);
 
     void createUser(SysUser userDTO);
 
+    @Deprecated
     void updatePassword(String password, Long id);
-
+    @Deprecated
     void updateUser(SysUser userDTO);
 }
