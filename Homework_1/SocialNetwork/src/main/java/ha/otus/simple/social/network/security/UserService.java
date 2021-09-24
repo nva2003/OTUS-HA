@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
 
@@ -20,11 +21,16 @@ public class UserService implements UserDetailsService {// Пользовате�
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
 
     @Override
     public UserDetails loadUserByUsername (String username) {// Перепишите метод loadUserByUsername для получения пользователей типа userdetails
 
         SysUser user = userMapper.findByUserName(username);
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         if (user != null) {
 //            List<Permission> permissions = permissionDao.findByAdminUserId(user.getId());
             List<GrantedAuthority> grantedAuthorities = new ArrayList <>();
@@ -43,4 +49,6 @@ public class UserService implements UserDetailsService {// Пользовате�
             throw new UsernameNotFoundException("admin: " + username + " do not exist!");
         }
     }
+
+
 }

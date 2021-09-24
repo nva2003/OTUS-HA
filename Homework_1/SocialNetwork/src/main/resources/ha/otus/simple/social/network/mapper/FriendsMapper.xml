@@ -15,14 +15,15 @@
 
     </resultMap>
 
-
+<!--todo-->
     <select id="getFriends" parameterType="Long" resultMap="userMap">
         select u.*
             from  friends f
         inner join
               users u
         on f.user_id = u.user_id
-        where f.user_id= #{id}
+        and u.user_id= #{id}
+        where u.user_id= f.user_id
 
     </select>
 
@@ -73,7 +74,7 @@
                          friend_id BIGINT not null
 -->
     <insert id="addToFriends" parameterType="ha.otus.simple.social.network.model.Friendship">
-        INSERT INTO users
+        INSERT INTO friends
         (
             user_id
             , friend_id
@@ -83,6 +84,13 @@
              #{user_id}
             , #{friend_id}
         )
+    </insert>
+
+    <insert id="deleteFriendship" parameterType="ha.otus.simple.social.network.model.Friendship">
+        delete from friends
+        where
+            user_id = 1
+            and friend_id = 1
     </insert>
 
 </mapper>

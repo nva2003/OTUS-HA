@@ -36,13 +36,19 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService (customUserService ()).passwordEncoder(passwordEncoder()); // Проверка службы сведений о пользователе
     }
+
+/*    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService (customUserService ()).passwordEncoder(passwordEncoder()); // Проверка службы сведений о пользователе
+    }*/
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         // The pages does not require login
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
         // Ресурсы доступны всем пользователям
-                .antMatchers("/static/* ","/css/**", "/js/**", "/images/**", "/webjars/**", "**/favicon.ico").permitAll()
+                .antMatchers("/static/**","/static/css/**","/css/**", "/js/**", "/images/**", "/webjars/**", "**/favicon.ico").permitAll()
                 .antMatchers("/register").permitAll()
                 // Любой URL, который не был найден, должен только аутентифицировать пользователя для доступа
                 .anyRequest().authenticated()
@@ -76,7 +82,7 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
         // When the user has logged in as XX.
         // But access a page that requires role YY,
         // AccessDeniedException will be thrown.
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+//        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
     }
 

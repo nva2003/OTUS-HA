@@ -15,12 +15,12 @@ public interface FriendsMapper {
 
     Set<SysUser> getAcceptedFriendshipUsers(Long id);
 
-    void deleteFriendship(SysUser userDTO, Long friendId);
+    void deleteFriendship(Friendship friendship);
 
     @Deprecated
-    void acceptFriendship(Long userId, Long friendId);
+    void acceptFriendship(Friendship friendship);
 
-    void addToFriends(Long userId, Long friendId);
+    void addToFriends(Friendship friendship);
 
     Boolean checkFriendship(Friendship friendship);
 }

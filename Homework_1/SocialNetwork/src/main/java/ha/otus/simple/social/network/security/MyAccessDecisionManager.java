@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Iterator;
 
-@Service
+//@Service
+@Deprecated
 public class MyAccessDecisionManager implements AccessDecisionManager {
 
     // Метод решения - это метод принятия решения, чтобы определить, иметь ли разрешение,

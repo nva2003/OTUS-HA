@@ -1,6 +1,7 @@
 package ha.otus.simple.social.network.controller;
 
 import ha.otus.simple.social.network.mapper.FriendsMapper;
+import ha.otus.simple.social.network.model.Friendship;
 import ha.otus.simple.social.network.model.SysUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,8 @@ public class FriendsController {
     @GetMapping("/{friendId}/decline")
     public String deleteFriendship(@PathVariable Long friendId, HttpServletRequest request) {
         SysUser user = getUserFromSession(request);
-        friendsMapper.deleteFriendship(user, friendId);
+        Friendship friendship = new Friendship(user.getUserId(), friendId);
+        friendsMapper.deleteFriendship(friendship);
         return "redirect:/user/friends";
     }
 
@@ -42,14 +44,16 @@ public class FriendsController {
     @GetMapping("/{friendId}/accept")
     public String acceptFriendship(@PathVariable Long friendId, HttpServletRequest request) {
         SysUser user = getUserFromSession(request);
-        friendsMapper.acceptFriendship(user.getUserId(), friendId);
+        Friendship friendship = new Friendship(user.getUserId(), friendId);
+        friendsMapper.acceptFriendship(friendship);
         return "redirect:/user/friends";
     }
 
     @GetMapping("/{friendId}/addToFriends")
     public String addToFriends(@PathVariable Long friendId, HttpServletRequest request) {
         SysUser user = getUserFromSession(request);
-        friendsMapper.addToFriends(user.getUserId(), friendId);
+        Friendship friendship = new Friendship(user.getUserId(), friendId);
+        friendsMapper.addToFriends(friendship);
         return "redirect:/user/friends";
     }
 
