@@ -1,8 +1,10 @@
 package ha.otus.simple.social.network.config;
 
 
+import ha.otus.simple.social.network.security.CustomAuthenticationSuccessHandler;
 import ha.otus.simple.social.network.security.MyFilterSecurityInterceptor;
 import ha.otus.simple.social.network.security.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +19,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
 /*
     @Autowired
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 */
+
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Bean
     UserDetailsService customUserService () {// Регистрация bean-компонента UserDetailsService
@@ -38,7 +43,7 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
         // The pages does not require login
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
         // Ресурсы доступны всем пользователям
-                .antMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "**/favicon.ico").permitAll()
+                .antMatchers("/static/* ","/css/**", "/js/**", "/images/**", "/webjars/**", "**/favicon.ico").permitAll()
                 .antMatchers("/register").permitAll()
                 // Любой URL, который не был найден, должен только аутентифицировать пользователя для доступа
                 .anyRequest().authenticated()
@@ -49,7 +54,8 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
                 // Указываем страницу входа и предоставляем всем пользователям доступ к странице входа
                 .loginPage("/login")//
                 // Устанавливаем страницу входа по умолчанию для перехода к успеху, ошибка возвращается в интерфейс входа
-                .defaultSuccessUrl("/home")
+//                .defaultSuccessUrl("/home")
+                .successHandler(customAuthenticationSuccessHandler)
                 .failureUrl("/login?error=true")
                 .usernameParameter("username")
                 .passwordParameter("password")

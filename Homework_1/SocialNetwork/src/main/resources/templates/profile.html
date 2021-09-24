@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+
+<body th:with="sessionUser=${session.user}">
+
+<div th:replace="fragments/header :: navbar"/>
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="profile-block margin-top">
+                <table class="table">
+                    <tr>
+                        <td>
+
+                            <table class="table">
+                                <tr th:if="${sessionUser.userId != user.userId}">
+                                    <td th:if="${usersHaveFriendship}">
+                                        <a th:href="@{/user/friends}" class="btn btn-success">Friend <span class="glyphicon glyphicon-ok"></span></a>
+                                    </td>
+                                    <td th:unless="${usersHaveFriendship}">
+                                        <a th:href="@{'/user/friends/' + ${user.id} + '/addToFriends'}" class="btn btn-success">Add to friends</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="profile-info">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 th:text="#{profile.info}">Profile</h3>
+                                </div>
+                                <div class="list-group">
+                                    <p class="list-group-item">
+                                        <span th:text="#{firstName}">First name</span>:
+                                        <span th:text="${user.firstName}">Tyron</span>
+                                    </p>
+                                    <p class="list-group-item">
+                                        <span th:text="#{lastName}">First name</span>:
+                                        <span th:text="${user.lastName}">Lanister</span>
+                                    </p>
+                                    <p class="list-group-item">
+                                        <span th:text="#{index.age}">Age</span>:
+                                        <span th:text="${user.age}">age</span>
+                                    </p>
+                                    <p class="list-group-item">
+                                        <span th:text="#{gender}">Gender</span>:
+                                        <span th:if="${user.sex.equals('MALE')}" th:text="#{gender.male}">Male</span>
+                                        <span th:if="${user.sex.equals('FEMALE')}" th:text="#{gender.female}">Female</span>
+                                    </p>
+                                    <p class="list-group-item">
+                                        <span th:text="#{index.interest}">interest</span>:
+                                        <span th:text="${user.interest}">interest</span>
+                                    </p>
+                                    <p class="list-group-item">
+                                        <span th:text="#{index.city}">cityGender</span>:
+                                        <span th:text="${user.city}">city</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="profile-block" th:if="${not #lists.isEmpty(friends)}">
+                <h3 th:text="#{profile.friends}">Friends:</h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span th:each="friend : ${friends}">
+<!--                            <a th:replace="${friend}"></a>-->
+                        </span>&nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

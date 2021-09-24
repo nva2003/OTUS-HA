@@ -12,7 +12,7 @@ CREATE TABLE users (
                        first_name VARCHAR(100) NOT NULL,
                        last_name VARCHAR(100) NOT NULL,
                        age INTEGER NOT NULL,
-                       sex VARCHAR(100) NOT NULL,
+                       sex VARCHAR(100) NOT NULL DEFAULT 'UNKNOWN',
                        interest VARCHAR(100) NOT NULL,
                        city VARCHAR(100) NOT NULL,
                        status VARCHAR(45)  NULL DEFAULT '1',

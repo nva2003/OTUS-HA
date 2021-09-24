@@ -47,6 +47,9 @@ public class SysUser {
     @NotNull
     private String city;
     @NotNull
+    /*
+    * короткое сообщение пользователя
+    * */
     private String status;
 
 

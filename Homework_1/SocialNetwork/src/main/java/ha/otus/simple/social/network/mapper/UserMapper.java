@@ -11,6 +11,8 @@ public interface UserMapper {
 
     public SysUser findByUserName(String username);
 
+    public SysUser findById(Long id);
+
     void createUser(SysUser userDTO);
 
     void updatePassword(String password, Long id);

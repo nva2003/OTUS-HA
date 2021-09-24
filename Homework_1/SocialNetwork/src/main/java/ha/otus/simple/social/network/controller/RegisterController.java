@@ -1,5 +1,6 @@
 package ha.otus.simple.social.network.controller;
 
+import ha.otus.simple.social.network.constants.Gender;
 import ha.otus.simple.social.network.mapper.UserMapper;
 import ha.otus.simple.social.network.model.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class RegisterController {
         }
 
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+//        int gender = Gender.getGenderByName(userDTO.getSex());
         userMapper.createUser(userDTO);
         return "about";
     }

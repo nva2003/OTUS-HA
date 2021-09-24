@@ -77,7 +77,11 @@
 
                     <div class="form-group">
                         <label for="register_sex">
-                            <span th:text="#{index.sex}">sex</span>: <input type="text" th:field="*{sex}" name="register_sex" class="form-control register_sex" id="register_sex" required/>
+                        <span th:text="#{index.sex}">sex</span>:
+                        <select name="register_sex" class="form-control register_sex" id="register_sex">
+                                <option th:each="sex : ${T(ha.otus.simple.social.network.constants.Gender).values()}"
+                                        th:value="${sex}" th:text="${sex}"></option>
+                            </select>
                         </label>
                         <div class="help-block register_sex_error hidden">Please, provide valid sex</div>
                         <div th:if="${#fields.hasErrors('sex')}" style="margin-bottom: 25px" class="text-danger">
@@ -88,7 +92,8 @@
                     </div>
                     <div class="form-group">
                         <label for="register_interest">
-                            <span th:text="#{index.interest}">interest</span>: <input type="text" th:field="*{interest}" name="register_interest" class="form-control register_interest" id="register_interest" required/>
+                            <span th:text="#{index.interest}">interest</span>:
+                            <input type="text" th:field="*{interest}" name="register_interest" class="form-control register_interest" id="register_interest" required/>
                         </label>
                         <div class="help-block register_interest_error hidden">Please, provide valid interest</div>
                         <div th:if="${#fields.hasErrors('interest')}" style="margin-bottom: 25px" class="text-danger">

@@ -5,7 +5,13 @@
         <id property="userId" column="user_id"/>
         <result property="userName" column="username"/>
         <result property="password" column="password"/>
-<!--
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="interest" column="interest"/>
+        <result property="city" column="city"/>
+        <result property="status" column="status"/><!--
         <collection property="roles" ofType="com.example.securitymybatis.entity.SysRole">
             <result column="name" property="name"/>
         </collection>
@@ -24,6 +30,12 @@
         select u.*
         from users u
         where username= #{username}
+    </select>
+
+    <select id="findById" parameterType="Long" resultMap="userMap">
+        select u.*
+        from users u
+        where user_id= #{id}
     </select>
 
 
