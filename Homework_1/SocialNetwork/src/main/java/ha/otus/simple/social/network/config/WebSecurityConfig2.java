@@ -34,8 +34,7 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService (customUserService ()); // Проверка службы сведений о пользователе
-
+        auth.userDetailsService (customUserService ()).passwordEncoder(passwordEncoder()); // Проверка службы сведений о пользователе
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
