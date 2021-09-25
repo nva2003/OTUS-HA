@@ -88,8 +88,8 @@
     <insert id="deleteFriendship" parameterType="ha.otus.simple.social.network.model.Friendship">
         delete from friends
         where
-            user_id = 1
-            and friend_id = 1
+            user_id = #{user_id}
+            and friend_id = #{friend_id}
     </insert>
 
 </mapper>
