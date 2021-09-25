@@ -37,13 +37,12 @@
     </select>
 
     <select id="checkFriendship" parameterType="ha.otus.simple.social.network.model.Friendship" resultType="Boolean">
-        SELECT
-               1
-            FROM
-                 friends f
-            WHERE (f.user_id= #{user_id}  AND f.friend_id= #{friend_id})
-            OR (f.friend_id= #{friend_id} AND f.user_id= #{user_id})
-
+        SELECT EXISTS(
+                       SELECT 1
+                       FROM friends f
+                       WHERE (f.user_id = #{user_id} AND f.friend_id = #{friend_id})
+                          OR (f.user_id = #{friend_id} AND f.friend_id = #{user_id})
+                   )
     </select>
 
 
