@@ -29,6 +29,7 @@
                         </td>
 
                         <td class="list-group-item">
+                            <span th:text="#{index.sex}">First name</span>:
                             <span th:if="${user.sex.equals('MALE')}" th:text="#{gender.male}">Male</span>
                             <span th:if="${user.sex.equals('FEMALE')}" th:text="#{gender.female}">Female</span>
                         </td>
