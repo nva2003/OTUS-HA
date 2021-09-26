@@ -51,6 +51,7 @@
                                         <span th:text="#{gender}">Gender</span>:
                                         <span th:if="${user.sex.equals('MALE')}" th:text="#{gender.male}">Male</span>
                                         <span th:if="${user.sex.equals('FEMALE')}" th:text="#{gender.female}">Female</span>
+                                        <span th:if="${user.sex.equals('UNKNOWN')}" th:text="#{gender.UNKNOWN}">UNKNOWN</span>
                                     </p>
                                     <p class="list-group-item">
                                         <span th:text="#{index.interest}">interest</span>:
