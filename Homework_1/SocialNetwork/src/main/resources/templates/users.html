@@ -32,6 +32,7 @@
                             <span th:text="#{index.sex}">First name</span>:
                             <span th:if="${user.sex.equals('MALE')}" th:text="#{gender.male}">Male</span>
                             <span th:if="${user.sex.equals('FEMALE')}" th:text="#{gender.female}">Female</span>
+                            <span th:if="${user.sex.equals('UNKNOWN')}" th:text="#{gender.UNKNOWN}">UNKNOWN</span>
                         </td>
                         <td>
                             <a th:href="@{'/user/friends/' + ${user.userId} + '/addToFriends'}" class="btn btn-success">Add to friends</a>
