@@ -3,8 +3,13 @@
     <div th:fragment="header">
         <title th:text="#{header}">Social Network</title>
         <!-- this is header-css -->
+<!--
         <link rel="stylesheet" type="text/css"
               href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+-->
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 
         <link rel="stylesheet" th:href="@{/css/main.css}"
               href="../../static/css/main.css" />

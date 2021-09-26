@@ -10,11 +10,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/", "/static/css/");
+        /*
+        * If you put your css in the static folder, you dont need the addResourceHandlers method.
+        * */
+        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+//        registry.addResourceHandler("/css/**").addResourceLocations("/css/", "/static/css/");
 //        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
-//        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+//        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/css/");
+//        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+//        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
     }
 
     public void addViewControllers(ViewControllerRegistry registry) {
