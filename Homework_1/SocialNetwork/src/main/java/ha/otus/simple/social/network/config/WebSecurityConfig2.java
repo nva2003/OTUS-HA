@@ -84,6 +84,7 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
         // AccessDeniedException will be thrown.
 //        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
+//        http.sessionManagement().sessionFixation().none();
     }
 
     // Указываем Spring контейнеру, что надо инициализировать BCryptPasswordEncoder

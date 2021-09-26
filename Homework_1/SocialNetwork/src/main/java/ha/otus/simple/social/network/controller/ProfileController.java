@@ -4,6 +4,7 @@ import ha.otus.simple.social.network.mapper.FriendsMapper;
 import ha.otus.simple.social.network.mapper.UserMapper;
 import ha.otus.simple.social.network.model.Friendship;
 import ha.otus.simple.social.network.model.SysUser;
+import ha.otus.simple.social.network.utils.ServerUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,13 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
-import static ha.otus.simple.social.network.utils.ServerUtils.getUserFromSession;
 
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class ProfileController {
 
+    @Autowired
+    ServerUtils serverUtils;
     @Autowired
     UserMapper userMapper;
     @Autowired
@@ -36,7 +38,7 @@ public class ProfileController {
 
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        SysUser user = userMapper.findByUserName(authentication.getName());
-        SysUser user = getUserFromSession(request);
+        SysUser user = serverUtils.getUserFromSession(request);
         model.addAttribute("user", user);
         Set<SysUser> friends = friendsMapper.getAcceptedFriendshipUsers(user.getUserId());
         model.addAttribute("friends", friends);
@@ -45,7 +47,7 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}")
     public String getUserPage(@PathVariable Long id, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        SysUser sessionUser = getUserFromSession(request);
+        SysUser sessionUser = serverUtils.getUserFromSession(request);
         if(sessionUser.getUserId().equals(id)) {
             return "redirect:/user/profile";
         }
