@@ -1,3 +1,5 @@
+-- data for table users
+
 INSERT INTO users (username, password, first_name, last_name, age, sex, interest, city)
 VALUES
        ('tyrselestion', '$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 'Tyrion', 'Lannister', 100, 'UNKNOWN', 'murder', 'fantasy'),
