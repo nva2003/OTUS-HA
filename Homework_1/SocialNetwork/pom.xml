@@ -18,11 +18,16 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>14</java.version>
+<!--        <java.version>8</java.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
 
         <validation-api.version>1.1.0.Final</validation-api.version>
+
+        <!--чтобы можно было запустить maven deploy нужно отключить deploy собранного jar файла (нам его не нужно никуда выкладывать).-->
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <dependencies>
@@ -133,11 +138,43 @@
             <version>${validation-api.version}</version>
         </dependency>
 
+        <!--Structured logging makes it easier to search and perform analytic operations on logging data.
+         You can use Logback to encode your Spring Boot logs into JSON format by adding the following dependency to your app:-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.6</version>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>social-network</finalName>
+
         <plugins>
+
+            <!--dockerfile-plugin от Spotify, который поможет нам со сборкой docker-образа нашего приложения.-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.13</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>registry.heroku.com/${project.artifactId}/web</repository>
+                    <tag>latest</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

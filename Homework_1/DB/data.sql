@@ -5,6 +5,8 @@ VALUES
        ('tyrselestion', '$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 'Tyrion', 'Lannister', 100, 'UNKNOWN', 'murder', 'fantasy'),
        ('cersei', '$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 'Cersei', 'Lannister', 100, 'UNKNOWN', 'murder', 'fantasy'),
        ('jaime', '$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 'Jaime', 'Lannister', 100, 'UNKNOWN', 'murder', 'fantasy');
+INSERT INTO users (username, password, first_name, last_name, age, sex, interest, city)
+VALUES
        ('stark', '$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 'Ned', 'Stark', 100, 'UNKNOWN', 'murder', 'fantasy');
 INSERT INTO users (username, password, first_name, last_name, age, sex, interest, city)
 VALUES
