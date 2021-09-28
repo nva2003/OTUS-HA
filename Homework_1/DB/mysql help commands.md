@@ -1,6 +1,7 @@
 #help
 ##
 # Command for  connection to mysql
+mysql -P 3306 --protocol=tcp -u root -p"password" < /tmp/schema.sql
 mysql -P 3306 --protocol=tcp -u root -p
 connect myDB
 ##

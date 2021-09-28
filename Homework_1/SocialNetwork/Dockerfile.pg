@@ -1,0 +1,5 @@
+FROM openjdk:8-jdk-alpine
+MAINTAINER Vladimir N <nva2003@yandex.ru>
+ARG JAR_FILE=target/social-network.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","-Dspring.profiles.active=pg","/app.jar"]

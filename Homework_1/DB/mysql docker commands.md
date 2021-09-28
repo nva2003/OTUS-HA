@@ -2,6 +2,10 @@
 
 ## Create docker image and start mysql container
 
+###build an image with
+docker build -f Dockerfile.mysql -t social-network/mysql .
+
+###run empty
 [comment]: <> (docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password MYSQL_DATABASE=myDB -d mysql:latest)
 docker run -p 3306:3306 --name MySQLContainer -e MYSQL_ROOT_PASSWORD=password MYSQL_DATABASE=myDB -d mysql:latest
 ```shell

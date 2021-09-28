@@ -1,7 +1,9 @@
 # Command for 'qa' profile to check locally connection to mysql
 
 ## Create docker image and start mysql container
+docker build -f Dockerfile.postgres social-network/postgres .
 
+###run empty
 [comment]: <> пароль суперпользователя придётся задать явно
 docker run -p 5432:5432 --name postgresContainer -e POSTGRES_PASSWORD=password; POSTGRES_DB=myDB; POSTGRES_USER=postgres -d postgres:latest
 ```shell

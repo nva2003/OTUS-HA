@@ -20,16 +20,7 @@ CREATE TABLE users (
                        PRIMARY KEY (user_id)
 );
 
-/*CREATE TABLE authorities (
-                             email VARCHAR(50) NOT NULL,
-                             authority VARCHAR(50) NOT NULL,
-                             FOREIGN KEY (email) REFERENCES users(username)
-);
 
-CREATE UNIQUE INDEX ix_auth_email on authorities (email,authority);
-CREATE UNIQUE INDEX ix_auth_username
-  on authorities (username,authority);
-*/
 alter table users
     add constraint USERS_PK primary key (user_id);
 
@@ -59,7 +50,7 @@ alter table messages
 -- ----------------------------------
 --  If we run the MySQL command SHOW TABLES,
 --  we can see tables inside our database myDB,
---  which are defined inside the schema.sql.
+--  which are defined inside the schemaMySQL.sql.
 -- ----------------------------------
 USE myDB;
 SHOW TABLES;

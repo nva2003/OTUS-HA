@@ -153,6 +153,7 @@
         <plugins>
 
             <!--dockerfile-plugin от Spotify, который поможет нам со сборкой docker-образа нашего приложения.-->
+<!--
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
@@ -174,6 +175,7 @@
                     </buildArgs>
                 </configuration>
             </plugin>
+-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>

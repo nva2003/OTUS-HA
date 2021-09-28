@@ -1,0 +1,31 @@
+FROM mysql:latest
+MAINTAINER Vladimir N <nva2003@yandex.ru>
+
+ENV MYSQL_ROOT_PASSWORD password
+ENV MYSQL_DATABASE myDB
+
+#USER mysql
+
+# Copy the database schema to the /data directory
+#COPY schemaMySQL.sql /docker-entrypoint-initdb.d/schema.sql
+#COPY data.sql /docker-entrypoint-initdb.d/
+#does non work...
+
+
+
+COPY schemaMySQL.sql /tmp/schema.sql
+COPY data.sql /tmp/
+#store the user and password
+#COPY my.cnf /etc/mysql/conf.d
+#COPY my.cnf ~/.my.cnf
+
+# add init
+#COPY init_db_mysql.sh /tmp/
+
+# init_db will create the default
+# database from epcis_schema.sql, then
+# stop mysqld, and finally copy the /var/lib/mysql directory
+# to default_mysql_db.tar.gz
+#RUN /tmp/init_db_mysql.sh
+
+EXPOSE 3306

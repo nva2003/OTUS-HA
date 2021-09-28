@@ -1,0 +1,11 @@
+FROM library/postgres
+MAINTAINER Vladimir N <nva2003@yandex.ru>
+
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD password
+ENV POSTGRES_DB myDB
+
+COPY schemaPostgres.sql /docker-entrypoint-initdb.d/
+COPY data.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 5432

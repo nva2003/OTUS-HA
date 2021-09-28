@@ -21,9 +21,6 @@ CREATE TABLE users (
 );
 
 alter table users
-    add constraint USERS_PK primary key (user_id);
-
-alter table users
     add constraint USERS_UK unique (username);
 
 
@@ -49,7 +46,7 @@ alter table messages
 -- ----------------------------------
 --  If we run the MySQL command SHOW TABLES,
 --  we can see tables inside our database myDB,
---  which are defined inside the schema.sql.
+--  which are defined inside the schemaMySQL.sql.
 -- ----------------------------------
 USE myDB;
 
