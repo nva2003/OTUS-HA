@@ -34,7 +34,7 @@ public class SysUser {
     @Size(min=2, max=100, message = "Min size is 2 and max size is 100")
     private String lastName;
     /*Возраст*/
-    private String age;
+    private Integer age;
     /*Пол*/
     @NotNull
     private String sex;
