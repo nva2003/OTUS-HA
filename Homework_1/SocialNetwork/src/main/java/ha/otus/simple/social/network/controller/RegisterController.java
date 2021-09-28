@@ -29,7 +29,7 @@ public class RegisterController {
 
         model.addAttribute("user", new SysUser());
 
-        return "/register";
+        return "register";
     }
 
     @PostMapping("/register")

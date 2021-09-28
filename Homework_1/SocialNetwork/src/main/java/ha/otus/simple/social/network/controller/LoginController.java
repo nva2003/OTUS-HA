@@ -14,12 +14,12 @@ public class LoginController {
 
     @GetMapping("/")
     public String home1() {
-        return "/home";
+        return "home";
     }
 
     @GetMapping("/home")
     public String home() {
-        return "/home";
+        return "home";
     }
 
     @PostMapping("/")
@@ -43,12 +43,12 @@ public class LoginController {
 
     @GetMapping("/about")
     public String about() {
-        return "/about";
+        return "about";
     }
 
     @GetMapping("/login")
     public String login() {
-        return "/login";
+        return "login";
     }
 
     @GetMapping("/access-denied")
@@ -58,7 +58,7 @@ public class LoginController {
 
     @GetMapping("/403")
     public String error403() {
-        return "/error/403";
+        return "error/403";
     }
 }
 
