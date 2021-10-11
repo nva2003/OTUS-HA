@@ -1,3 +1,8 @@
+OTUS (Highload Architect)
+(https://otus.ru/lessons/highloadarchitect/?int_source=courses_catalog&int_term=operations)
+
+https://otus.ru/learning/130042/
+
 # Требуется разработать создание и просмотр анект в социальной сети.
 
 Функциональные требования:
