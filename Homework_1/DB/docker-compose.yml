@@ -1,0 +1,25 @@
+# Файл docker-compose должен начинаться с тега версии.
+version: "3.7"
+# Следует учитывать, что docker-composes работает с сервисами.
+# 1 сервис = 1 контейнер.
+# Сервисом может быть клиент, сервер, сервер баз данных...
+# Раздел, в котором будут описаны сервисы, начинается с 'services'.
+services:
+
+  mysql:
+    image: mysql
+#    container_name: MySQLContainer
+    ports:
+      - "3030:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=myDB
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+      - ./schemaMySQL.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./data.sql:/docker-entrypoint-initdb.d/2.sql
+
+volumes:
+    todo-mysql-data:
