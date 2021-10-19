@@ -30,12 +30,13 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
       POSTGRES_DB: myDB
       PGDATA: /data/postgres
+      $POSTGRES_HOST: localhost
     volumes:
 #      - postgres:/data/postgres
-      - ./setupPostgres.sh:/docker-entrypoint-initdb.d/initdb.sh
+#      - ./setupPostgres.sh:/docker-entrypoint-initdb.d/initdb.sh
       - ./schemaPostgres.sql:/docker-entrypoint-initdb.d/1.sql
       - ./data.sql:/docker-entrypoint-initdb.d/2.sql
-#      - ./data:/var/lib/postgresql/data
+#      - ./postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
@@ -48,5 +49,5 @@ networks:
 
 volumes:
   todo-mysql-data:
-  postgres-data:
+#  postgres-data:
   pgadmin:

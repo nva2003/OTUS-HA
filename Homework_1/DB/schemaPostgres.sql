@@ -1,4 +1,4 @@
-DROP DATABASE myDB;
+-- DROP DATABASE myDB;
 CREATE DATABASE myDB;
 -- USE myDB;
 -- ----------------------------------
@@ -48,9 +48,9 @@ alter table messages
 --  we can see tables inside our database myDB,
 --  which are defined inside the schemaMySQL.sql.
 -- ----------------------------------
-USE myDB;
+-- USE myDB;
 
-\dt public.*;
+-- \dt public.*;
 
 SELECT * FROM pg_catalog.pg_tables;
 
