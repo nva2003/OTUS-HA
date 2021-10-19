@@ -8,6 +8,7 @@ services:
 
 #  mysql:
 #    image: mysql
+#    profiles: ["mysql"]
 ##    container_name: MySQLContainer
 #    ports:
 #      - "3306:3306"
@@ -25,6 +26,7 @@ services:
 
   postgres:
     image: postgres
+#    profiles: ["postgres"]
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}

@@ -21,8 +21,8 @@ CREATE TABLE users (
 );
 
 
-alter table users
-    add constraint USERS_PK primary key (user_id);
+-- alter table users
+--     add constraint USERS_PK primary key (user_id);
 
 alter table users
     add constraint USERS_UK unique (username);
