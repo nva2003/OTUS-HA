@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <div th:replace="fragments/header :: header"/>
+</head>
+
+<body th:with="sessionUser=${session.user}">
+
+<div th:replace="fragments/header :: navbar"/>
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="find-top">
+                <h3 class="well" th:text="#{btn.user.find}">Find Users</h3>
+
+                <span class="alert-warning" th:text="${msg}">>
+                </span>
+
+                    <div class="row">
+
+                        <form th:object="${user}" th:action="@{/users}" method="post"
+                              id="search-user-form">
+
+                            <div class="col-sm-12">
+                                <div class="row">
+
+                                    <div class="form-group">
+                                        <label for="register_firstName">
+                                            <span th:text="#{firstName}">First name</span>: <input type="text" th:field="*{firstName}" name="register_firstName" class="form-control" id="register_firstName" required/>
+                                        </label>
+                                        <div class="help-block register_firstName_error hidden">Please, provide valid first name</div>
+                                        <div th:if="${#fields.hasErrors('firstName')}" style="margin-bottom: 25px" class="text-danger">
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('firstName')}" th:text="'First name ' + ${err}" />
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="register_lastName">
+                                            <span th:text="#{lastName}">Last name</span>: <input type="text" th:field="*{lastName}" name="register_lastName" class="form-control" id="register_lastName" required/>
+                                        </label>
+                                        <div class="help-block register_lastName_error hidden">Please, provide valid last name</div>
+                                        <div th:if="${#fields.hasErrors('lastName')}" style="margin-bottom: 25px" class="text-danger">
+                                            <ul>
+                                                <li th:each="err : ${#fields.errors('lastName')}" th:text="'Last name ' + ${err}" />
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4 form-group has-feedback">
+                                        <button type="submit" class="btn btn-primary" th:text="#{btn.user.find}">Find user</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

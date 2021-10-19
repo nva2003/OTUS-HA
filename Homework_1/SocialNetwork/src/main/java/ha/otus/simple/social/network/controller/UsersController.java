@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+import java.util.Map;
 
 
 /**
@@ -29,6 +29,8 @@ public class UsersController {
     @Value("${default.page.size}")
     private Integer defaultPageSize;
 
+    private static final String VIEWS_FIND_USER_FORM = "findUsers";
+
     private final UserMapper userMapper;
 
     @GetMapping("/users")
@@ -38,5 +40,12 @@ public class UsersController {
         List<SysUser> users = userMapper.findOther(user.getUserId());
             model.addAttribute("users",users);
         return "users";
+    }
+
+    @GetMapping("/find")
+    public String findUsers(Map<String, Object> model) {
+        model.put("user", new SysUser());
+        model.put("menu", "find users");
+        return VIEWS_FIND_USER_FORM;
     }
 }
