@@ -60,7 +60,7 @@ public class UsersController {
 
         // find users by last name
         //todo
-        List<SysUser> users = userMapper.findOther(user.getUserId());
+        List<SysUser> users = userMapper.find(user);
         if (users.isEmpty()) {
             // no users found
             model.put("msg", "Пользователь с заданами параметрами не найден");

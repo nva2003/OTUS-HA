@@ -17,6 +17,8 @@ public interface UserMapper {
 
     public List<SysUser> findOther(Long id);
 
+    public List<SysUser> find(SysUser userDTO);
+
     void createUser(SysUser userDTO);
 
     @Deprecated

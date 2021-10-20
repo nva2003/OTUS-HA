@@ -51,7 +51,25 @@
         ]]>
     </select>
 
-
+    <select id="find" parameterType="ha.otus.simple.social.network.model.SysUser" resultMap="userMap">
+        <if test="lastName != null and lastName != ''">
+            <bind name="lastNamePattern" value="'%' + lastName + '%'"/>
+        </if>
+        <if test="firstName != null and firstName != ''">
+            <bind name="firstNamePattern" value="'%' + firstName + '%'"/>
+        </if>
+        select u.*
+        from users u
+        <where>
+            <if test="lastName != null and lastName != ''">
+                lower(u.last_name) like lower(#{lastNamePattern})
+            </if>
+            <if test="firstName != null and firstName != ''">
+                and lower(u.first_name) like lower(#{firstNamePattern})
+            </if>
+        </where>
+        order by user_id
+    </select>
 
 
 
