@@ -54,9 +54,11 @@ https://pypi.org/project/mysql-connector-python/8.0.24/#files
 https://dev.mysql.com/downloads/connector/python/
 http://ftp.iij.ad.jp/pub/db/mysql/Downloads/Connector-Python/
 
+[install Random name generator](https://github.com/treyhunner/names)
+    pip install names
 
+[comment]: <> ([install names-dataset]&#40;https://github.com/philipperemy/name-dataset&#41;)
 
+[comment]: <> (    pip install names-dataset)
 
-
-1. Installing sqlalchemy library
-   pip install sqlalchemy
+use generateUsers.py for generate
