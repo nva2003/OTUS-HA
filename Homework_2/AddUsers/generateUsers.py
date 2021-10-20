@@ -13,8 +13,9 @@ def countdown(n):
         # print(last_name)
         addUser.add_user(generate_random_email_address.get_email(), first_name, last_name)
         n -= 1
+        print(n)
     print('Готово!')
 
 
-countdown(2)
+countdown(1000000)
 
