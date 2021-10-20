@@ -1,7 +1,7 @@
 OTUS (Highload Architect)
 https://otus.ru/lessons/highloadarchitect
 
-# Домашнее задание
+# Домашнее задание 2
 # Производительность индексов
 
 ###Цель:
