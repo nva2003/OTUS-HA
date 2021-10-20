@@ -62,3 +62,9 @@ http://ftp.iij.ad.jp/pub/db/mysql/Downloads/Connector-Python/
 
 
 use generateUsers.py for generate
+
+##Docker
+get requirements.txt
+    
+    pip freeze
+    pip freeze > requirements.txt

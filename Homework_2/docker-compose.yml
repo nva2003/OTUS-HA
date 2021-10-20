@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      -mysql
+#    environment:
+#      DATABASE_URL: postgres://todoapp@postgres/todos
+
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=myDB
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    volumes:
+      - ./schemaMySQL.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./data.sql:/docker-entrypoint-initdb.d/2.sql
+
+
+networks:
+  app-network:
+    driver: bridge
