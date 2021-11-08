@@ -3,6 +3,8 @@ package ha.otus.simple.social.network.security;
 import ha.otus.simple.social.network.mapper.UserMapper;
 import ha.otus.simple.social.network.model.SysUser;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -16,6 +18,8 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
+	private static Logger LOGGER = LoggerFactory.getLogger(CustomAuthenticationSuccessHandler.class);
+
 	@Autowired
 	private final UserMapper userMapper;
 
@@ -25,6 +29,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
 		SysUser userDTO = userMapper.findByUserName(authentication.getName());
 		request.getSession().setAttribute("user", userDTO);
+
+		LOGGER.info("Authentication Success for user " + authentication.getName());
 
 		response.sendRedirect(request.getContextPath() + "/user/profile");
 	}
