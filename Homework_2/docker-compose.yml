@@ -22,11 +22,17 @@ services:
     build: .
     depends_on:
       - mysql
+    links:
+      - mysql
     environment:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=myDB
-      - MYSQL_HOST=user
+      - MYSQL_HOST=mysql
+    networks:
+      - app-network
+#    command:
+#      tail -f /dev/null
 
 
 networks:

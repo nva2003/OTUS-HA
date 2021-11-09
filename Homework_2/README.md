@@ -75,6 +75,9 @@ build
 sudo docker build -t otus/addusers .
 ```
 
+docker compose:
+
+    docker compose -f docker-compose.yml -d
 
 ## Test
 
