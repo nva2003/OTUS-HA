@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+
+
+  wrk:
+#    image: williamyeh/wrk
+    image: skandyla/wrk
+    volumes:
+      - ./LoadTesting/wrk-scripts/post.lua:/tmp/wrk/scripts/post.lua
+    environment:
+      - WRK_REPORT=/tmp/wrk/${WRK_REPORT:-report.csv}
+#    links:
+#      - application
+
+#    networks:
+#      - app-network
+    network_mode: "host"
+    command: "--script /tmp/wrk/scripts/post.lua --threads ${THREADS:-1} --connections ${CONNECTIONS:-1} --duration ${DURATION:-1} -H 'Host: localhost' http://192.168.1.222:8080/login"
+
+
+
+#networks:
+#  app-network:
+#    driver: host

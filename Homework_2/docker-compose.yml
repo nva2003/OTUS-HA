@@ -1,14 +1,7 @@
 version: "3.7"
 
 services:
-  web:
-    build: .
-    volumes:
-      - .:/app
-    depends_on:
-      -mysql
-#    environment:
-#      DATABASE_URL: postgres://todoapp@postgres/todos
+
 
   mysql:
     image: mysql
@@ -22,8 +15,18 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=user
     volumes:
-      - ./schemaMySQL.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./data.sql:/docker-entrypoint-initdb.d/2.sql
+      - ../Homework_1/DB/schemaMySQL.sql:/docker-entrypoint-initdb.d/1.sql
+      - ../Homework_1/DB/data.sql:/docker-entrypoint-initdb.d/2.sql
+
+  usergenerator:
+    build: .
+    depends_on:
+      - mysql
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=myDB
+      - MYSQL_HOST=user
 
 
 networks:

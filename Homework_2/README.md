@@ -68,3 +68,65 @@ get requirements.txt
     
     pip freeze
     pip freeze > requirements.txt
+
+build 
+* simply build an image with
+```shell
+sudo docker build -t otus/addusers .
+```
+
+
+## Test
+
+[Install wrk](https://hub.docker.com/r/williamyeh/wrk)
+    
+    docker pull williamyeh/wrk
+or use 
+
+    docker pull skandyla/wrk
+
+Sample
+
+    docker run --rm williamyeh/wrk -c 10 -t 4 -d 10 http://ya.ru
+
+>-t: количество потоков для моделирования
+> 
+>-c: количество подключений, которые необходимо смоделировать
+> 
+>-d: продолжительность теста
+> 
+>--timeout: время ожидания
+> 
+>--latency: отображать статистику задержки
+
+
+    docker run --rm williamyeh/wrk -c 10 -t 4 -d 10 -s wrk-scripts/post.lua http://ya.ru -- debug true
+    docker run --rm williamyeh/wrk -c 10 -t 4 -d 10 -s post.lua http://ya.ru -- debug true
+    docker run --rm -v $(pwd):/data skandyla/wrk -c 10 -t 4 -d 10 -s post.lua http://ya.ru -- debug true
+    docker run --rm -v C:\Users\user\MyProjects\OTUS\OTUS-HA\Homework_2\LoadTesting\wrk-scripts:/data skandyla/wrk -c 10 -t 4 -d 10 -s post.lua https://otus-ha-social-network.herokuapp.com/login -- debug true
+    docker run --rm -v `pwd`/scripts:/scripts williamyeh/wrk -c$1 -t$2 -d$3 -s /scripts/post.lua http://xx.x.xx.xx:port/login
+    docker run --rm --net host -v C:\Users\user\MyProjects\OTUS\OTUS-HA\Homework_2\LoadTesting\wrk-scripts:/scripts williamyeh/wrk -c 10 -t 4 -d 10 -s /scripts/post.lua http://localhost:8080/login 
+
+    docker run --rm -v C:\Users\user\MyProjects\OTUS\OTUS-HA\Homework_2\LoadTesting\wrk-scripts:/scripts williamyeh/wrk -c 10 -t 4 -d 10 -s /scripts/post.lua http://192.168.1.222:8080/login
+
+    docker run --rm --net host -v C:\Users\user\MyProjects\OTUS\OTUS-HA\Homework_2\LoadTesting\wrk-scripts:/scripts williamyeh/wrk -c 1 -t 1 -d 1 -s /scripts/post.lua http://192.168.1.222:8080/login 
+
+
+[wrk2](https://github.com/giltene/wrk2)
+
+    docker pull hugotr/wrk2
+    docker pull bootjp/wrk2
+    docker run --rm --net=host 1vlad/wrk2-docker -t1 -c1 -d90s -R50 --latency http://localhost
+
+    wrk -c3 -d1s -t2 -s /scripts/debug.lua http://$APP1_PRIVATE_IP:3000 -- debug true
+
+See also:
+https://www.programmerall.com/article/91712052934/
+https://hub.docker.com/r/rajneeshmitharwal/docker-wrk2-json
+[wrk2-with-online-script](https://github.com/syedhassaanahmed/wrk2-with-online-script)
+[wrk2 + json](http://czerasz.com/2015/07/19/wrk-http-benchmarking-tool-example/)
+[docker-wrk-json](https://github.com/BlackRider97/docker-wrk-json)
+(https://www.8host.com/blog/analiz-servisov-http-s-pomoshhyu-wrk-v-ubuntu-14-04/)
+
+> docker context list
+> docker context use default

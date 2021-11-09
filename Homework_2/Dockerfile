@@ -13,5 +13,5 @@ RUN pip3 install -r requirements.txt
 COPY ./AddUsers .
 #COPY ./AddUsers /app
 #CMD [ "python3", "-m" , "flAddUsers/generateUsers.pyask", "run", ]
-CMD ["generateUsers.py"]
+CMD ["-u","generateUsers.py"]
 ENTRYPOINT ["python3"]
