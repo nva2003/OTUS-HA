@@ -1,12 +1,18 @@
 ###### docker context
-
+MY:
 > docker context list
 > docker context use default
+> docker context use my-server
+> docker --context default ps
+> docker --default my-server ps
 
 ###### Create a new image from a container’s changes
 [Create a new image from a container’s changes](https://docs.docker.com/engine/reference/commandline/commit/)
 
 [How to Create a Docker Image From a Container](https://www.sentinelone.com/blog/create-docker-image/)
+
+
+    docker commit dcb0d6f11ba6  otus/homework_2_mysql:1.0
 
 ###### copy Docker images from one host to another without using a repository
 

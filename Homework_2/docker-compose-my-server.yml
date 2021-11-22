@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+
+
+  mysql:
+    image: mysql
+    user: "${UID}:${GID}"
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=myDB
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    volumes:
+      - /home/docker/mysql-data:/var/lib/mysql
+#      - /hdd-ntfs-repo/mariadb/db:/var/lib/mysql
+#      - /my/custom:/etc/mysql/conf.d
+#      - /hdd-ntfs-repo/mariadb/db:/docker-entrypoint-initdb.d
+#      - ${PWD}/mariadb/db/:/var/lib/mysql
+#      - ../Homework_1/DB/schemaMySQL.sql:/docker-entrypoint-initdb.d/1.sql
+#      - ../Homework_1/DB/data.sql:/docker-entrypoint-initdb.d/2.sql
+
+#  usergenerator:
+#    build: .
+#    depends_on:
+#      - mysql
+#    links:
+#      - mysql
+#    environment:
+#      - MYSQL_USER=root
+#      - MYSQL_PASSWORD=password
+#      - MYSQL_DATABASE=myDB
+#      - MYSQL_HOST=mysql
+#    networks:
+#      - app-network
+
+
+
+networks:
+  app-network:
+    driver: bridge

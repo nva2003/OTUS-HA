@@ -39,12 +39,19 @@ def add_user(username, first_name, last_name) -> None:
         """
 
         # Insert new employee
-        cursor.execute(add_user, data_user)
+        try:
+            cursor.execute(add_user, data_user)
 
-        emp_no = cursor.lastrowid
+            emp_no = cursor.lastrowid
+        except mysql.connector.Error as err:
+            print('ошибка при добавлении пользователя')
+            print(err)
 
-        cnx.commit()
-        cursor.close()
-        cnx.close()
+            raise
+
+        finally:
+            cnx.commit()
+            cursor.close()
+            cnx.close()
 
 # add_user(1,1,1)

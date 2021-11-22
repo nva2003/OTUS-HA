@@ -14,9 +14,9 @@ services:
       - MYSQL_DATABASE=myDB
       - MYSQL_USER=user
       - MYSQL_PASSWORD=user
-#    volumes:
-#      - ../Homework_1/DB/schemaMySQL.sql:/docker-entrypoint-initdb.d/1.sql
-#      - ../Homework_1/DB/data.sql:/docker-entrypoint-initdb.d/2.sql
+    volumes:
+      - ../Homework_1/DB/schemaMySQL.sql:/docker-entrypoint-initdb.d/1.sql
+      - ../Homework_1/DB/data.sql:/docker-entrypoint-initdb.d/2.sql
 
   usergenerator:
     build: .
@@ -31,8 +31,6 @@ services:
       - MYSQL_HOST=mysql
     networks:
       - app-network
-#    command:
-#      tail -f /dev/null
 
 
 networks:

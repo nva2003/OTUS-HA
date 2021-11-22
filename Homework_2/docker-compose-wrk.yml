@@ -16,7 +16,7 @@ services:
 #    networks:
 #      - app-network
     network_mode: "host"
-    command: "--script /tmp/wrk/scripts/post.lua --threads ${THREADS:-1} --connections ${CONNECTIONS:-1} --duration ${DURATION:-1} -H 'Host: localhost' http://192.168.1.222:8080/login"
+    command: "--script /tmp/wrk/scripts/post.lua --threads ${THREADS:-1} --connections ${CONNECTIONS:-1} --duration ${DURATION:-1} http://192.168.1.222:8080/login"
 
 
 

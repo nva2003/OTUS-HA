@@ -16,8 +16,15 @@ def countdown(n):
         print(real_name)
         # print(first_name)
         # print(last_name)
-        addUser.add_user(generate_random_email_address.get_email(), first_name, last_name)
-        n -= 1
+        try:
+            addUser.add_user(generate_random_email_address.get_email(), first_name, last_name)
+        except:
+            print('Что-то пошло не так.')
+
+        # except mysql.connector.Error as err:
+        #     print('ощибка при добавлении пользователя')
+        else:
+            n -= 1
         print(n)
     print('Готово!')
 

@@ -54,6 +54,12 @@ https://pypi.org/project/mysql-connector-python/8.0.24/#files
 https://dev.mysql.com/downloads/connector/python/
 http://ftp.iij.ad.jp/pub/db/mysql/Downloads/Connector-Python/
 
+[Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html)
+
+[](https://pythonru.com/osnovy/obrabotka-iskljuchenij-python-blok-try-except-blok-finally)
+
+[Обработка ошибок с помощью Python](https://desktop.arcgis.com/ru/arcmap/10.3/analyze/python/error-handling-with-python.htm)
+
 переехал на Python 3.9
 
 [install Random name generator](https://github.com/treyhunner/names)
