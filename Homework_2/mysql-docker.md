@@ -22,10 +22,16 @@ docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE | gzip
     docker exec  homework_2_mysql_1 /usr/bin/mysqldump -u root --password=password myDB | gzip > `date +%Y-%m-%d-%T%z`-myDB.sql.gz`
 
 ## Restore
+
+    docker exec homework_2_mysql_1 /usr/bin/mysql -u root --password=password -e "CREATE DATABASE myDB;"
+
+    docker exec -i homework_2_mysql_1 /usr/bin/mysql -u root --password=password myDB < backup-myDB.sql
+
+linux:
+
 cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
 
-    cat backup-myDB.sql | docker exec -i homework_2_mysql_1 /usr/bin/mysql -u root --password=password myDB
-
+ 
 ## Restoring data from dump files
 
 $ docker exec -i some-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < /some/path/on/your/host/all-databases.sql
