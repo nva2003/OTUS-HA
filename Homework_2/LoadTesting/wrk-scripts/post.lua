@@ -44,7 +44,7 @@ request1 = function()
     print "function_request_1"
     headers = {}
     headers["Content-Type"] = "application/x-www-form-urlencoded"
-    body = 'username=1&password=1'
+    body = "username=1&password=1"
     return wrk.format("POST", "/login", headers, body)
 end
 
